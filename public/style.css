@@ -1,0 +1,32 @@
+.navbar-nav {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+   }
+
+   .row {
+   	/*border: 1px solid red;*/
+   	display: flex;
+   	justify-content: space-around;
+   	margin-top: 100px;
+   	/*position: absolute;
+   	top: 50%;
+   	left: 50%;
+   	transform: translate(-50%, -50%);*/
+}
+
+.goal-container {
+	/*border: 1px solid red;*/
+	padding: 30px;
+	margin: auto;
+	display: flex;
+	justify-content: center
+}
+
+.form-wrapper {
+	/*border: 1px solid black;*/
+	margin: auto;
+	padding: 30px;
+	display: flex;
+	justify-content: center
+}

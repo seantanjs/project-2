@@ -51,7 +51,8 @@ module.exports = (db) => {
                     response.cookie('username', username);
                     response.cookie('logIn', logInHash);
 
-                    response.send("home page");
+
+                    response.redirect('home');
                 } else if(err === null && result === null) {
                     response.render("loginFail");
                 }
