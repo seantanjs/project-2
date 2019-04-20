@@ -68,7 +68,8 @@ const usersModelsObject = allUsersModelsFunction( pool );
 
 const allFinancesModelsFunction = require('./models/financesModel');
 
-const financesModelsObject = allUsersModelsFunction( pool );
+const financesModelsObject = allFinancesModelsFunction( pool );
+
 
 
 

@@ -28,12 +28,26 @@ module.exports = (app, allModels) => {
     app.post('/login', usersControllerCallbacks.loginUser);
 
 
+    app.get('/logout', usersControllerCallbacks.logoutUser);
+
+
 //financessControlCallbacks is a callback function within the controller file
     app.get('/home', financesControllerCallbacks.renderHome);
 
      app.get('/goal', financesControllerCallbacks.renderGoal);
 
-      app.post('/goal', financesControllerCallbacks.addFinances);
+      app.post('/goal', financesControllerCallbacks.addNewFinances);
+
+
+
+
+       app.get('/monthly_input', financesControllerCallbacks.renderMonthlyFinances);
+
+      app.post('/monthly_input', financesControllerCallbacks.addMonthlyFinances);
+
+
+
+      app.get('/tracking', financesControllerCallbacks.renderTracking);
 
 
 };

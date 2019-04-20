@@ -11,6 +11,8 @@ class GoalForm extends React.Component {
     return (
         <Layout loggedInUser = {this.props.username}>
 
+
+
       <div class="goal-container">
 
 
@@ -35,8 +37,8 @@ class GoalForm extends React.Component {
                             </div>
                     </div><br/><br/>
 
-                    <div class="col-">
-
+                    <div align="center">
+                    <h2>My Current Finances</h2>
                     </div>
 
                     <div class="form-row">
@@ -47,15 +49,15 @@ class GoalForm extends React.Component {
                                 <h4>Monthly Investment</h4>
                                 <h4>Monthly Savings</h4>
                             </div>
-                            <div class="col-4">
-                                <h4 class="mr-3 d-inline">S$</h4>
-                                <input type="text" name="monthly_income_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
-                                <h4 class="mr-3 d-inline">S$</h4>
-                                <input type="text" name="monthly_expenses_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
-                                <h4 class="mr-3 d-inline">S$</h4>
-                                <input type="text" name="monthly_investment_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
-                                <h4 class="mr-3 d-inline">S$</h4>
-                                <input type="text" name="monthly_saving_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
+    <div class="col-4">
+        <h4 class="mr-3 d-inline">S$</h4>
+        <input id="income" onKeyDown="calculateSavings()" type="text" name="monthly_income_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
+                <h4 class="mr-3 d-inline">S$</h4>
+                <input id="expenses" type="text" name="monthly_expenses_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
+                <h4 class="mr-3 d-inline">S$</h4>
+                <input id="investment" type="text" name="monthly_investment_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
+                <h4 class="mr-3 d-inline">S$</h4>
+                <input type="text" name="monthly_saving_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
                             </div>
                     </div>
                     <br/>
@@ -65,10 +67,6 @@ class GoalForm extends React.Component {
             </div>
 
         </div>
-
-
-
-
 
     </Layout>
     );

@@ -43,59 +43,111 @@ module.exports = (db) => {
 
 
   let addUserFinances = (request, response) => {
-    response.send("HERE LA CB");
+    console.log(request.body);
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null) {
+            const loggedInUserName = request.cookies["username"];
+            const loggedInUserId = request.cookies["userId"];
+            console.log("HERE Login ID",loggedInUserId);
+
+    db.finances.addNewFinanceData(request.body, loggedInUserId, (err, result) => {
+        if(err !== null) {
+            console.log("query error test 3");
+            response.status(500).send("Error");
+        } else if(result !== null) {
+            db.users.addGoalData(request.body, loggedInUserId, (err, result) => {
+                if(err !== null) {
+                    console.log("query error test 4");
+                    response.status(500).send("Error");
+                } else if(result !== null) {
+                    // response.send("success!");
+                    response.redirect("tracking");
+                }
+            })
+        }
+    })
+
+
+    } else {
+            response.status(500).send('Error');
+        }
+
+
+
+  }
+
+
+
+  let renderMonthlyFinancesForm = (request, response) => {
+
+    if(request.cookies['username'] !== null){
+
+            const loggedInUser = request.cookies["username"];
+
+            response.render('monthlyFinancesForm', {
+                username : loggedInUser
+                });
+        } else {
+            response.status(500).send('Error');
+        }
   };
 
 
-  // let renderGoalForm = (request, response) => {
+  let addUserMonthlyFinances = (request, response) => {
+    console.log(request.body);
 
-  // };
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null) {
+            const loggedInUserName = request.cookies["username"];
+            const loggedInUserId = request.cookies["userId"];
+            console.log("HERE Login ID",loggedInUserId);
 
-
-
-
-  // let registerUser = (request, response) => {
-
-  //   const username = request.body.username;
-  //   const hash = sha256(request.body.password + SALT);
-
-  //   db.users.addNewUser( request.body, (err, result) => {
-  //       if(err !== null) {
-  //           console.log("query error test 1");
-  //           response.status(500).send('Error');
-  //       } else {
-  //           response.send('User account successfully registered!<br/><a href="/login">Login here </a>');
-  //       }
-  //   });
-  // };
-
-  // let renderLoginForm = (request, response) => {
-  //       response.render('login');
-  // };
+    db.finances.addNewFinanceData(request.body, loggedInUserId, (err, result) => {
+        if(err !== null) {
+            console.log("query error test 3");
+            response.status(500).send("Error");
+        } else if(result !== null) {
+            response.redirect("tracking");
+        }
+    })
 
 
-  // let loginUser = (request, response) => {
+    } else {
+            response.status(500).send('Error');
+        }
 
-  //   const username = request.body.username;
-  //   const hash = sha256(request.body.password + SALT);
 
-  //   db.users.authenticateUser( request.body, (err, result) => {
-  //               if(err !== null) {
-  //                   console.log("query error test 2");
-  //                   response.status(500).send('Error');
-  //               } else if(result !== null) {
-  //                   const logInHash = sha256(username + SALT);
 
-  //                   response.cookie('username', username);
-  //                   response.cookie('logIn', logInHash);
-//
-  //                   response.send("home page");
-  //               } else if(err === null && result === null) {
-  //                   response.render("loginFail");
-  //               }
+  }
 
-  //   });
-  // };
+
+
+  let renderGoalTracking = (request, response) => {
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
+
+            const loggedInUserName = request.cookies["username"];
+
+            const loggedInUserId = request.cookies["userId"];
+
+           db.finances.getFinanceData(loggedInUserId, (err, result) => {
+            if(err !== null) {
+                console.log("query error test 4");
+                response.status(500).send("Error");
+            } else if(result !== null) {
+                // response.cookie()
+                // response.render('goalTracking', {
+                // username : loggedInUser
+                // });
+                console.log(result.rows);
+                const data = { dataSet: result.rows}
+                response.render("goalTracking", data, {username: loggedInUserName} );
+            }
+        });
+
+        } else {
+            response.status(500).send('Error');
+        }
+  };
 
 
 
@@ -107,7 +159,10 @@ module.exports = (db) => {
   return {
     renderHome: renderHomePage,
     renderGoal: renderGoalForm,
-    addFinances : addUserFinances
+    addNewFinances : addUserFinances,
+    renderMonthlyFinances: renderMonthlyFinancesForm,
+    addMonthlyFinances : addUserMonthlyFinances,
+    renderTracking: renderGoalTracking
   };
 
 }

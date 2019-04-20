@@ -20,10 +20,10 @@ class Layout extends React.Component {
     <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/home">Home</a>
-            </li>
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <li class="nav-item">
-                <a class="nav-link" href="#">Goal Tracking</a>
-            </li>
+                <a class="nav-link" href="/tracking">Goal Tracking</a>
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
                 <a class="nav-link" href="#">About us</a>
             </li>
@@ -37,7 +37,7 @@ class Layout extends React.Component {
           <a class="dropdown-item" href="#">Profile</a>
           <a class="dropdown-item" href="#">Settings</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Logout</a>
+          <a class="dropdown-item" href="/logout">Logout</a>
         </div>
       </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 

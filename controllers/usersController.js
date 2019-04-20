@@ -49,6 +49,7 @@ module.exports = (db) => {
                     const logInHash = sha256(username + SALT);
 
                     response.cookie('username', username);
+                    response.cookie('userId', result.rows[0].id);
                     response.cookie('logIn', logInHash);
 
 
@@ -58,6 +59,12 @@ module.exports = (db) => {
                 }
 
     });
+  };
+
+  let logoutUser = (request, response) => {
+        response.clearCookie('username', request.cookies['username']);
+        response.clearCookie('userId', request.cookies['userId']);
+        response.redirect('login');
   };
 
 
@@ -71,7 +78,8 @@ module.exports = (db) => {
     renderRegister: renderRegisterForm,
     registerNewUser: registerUser,
     renderLogin: renderLoginForm,
-    loginUser: loginUser
+    loginUser: loginUser,
+    logoutUser: logoutUser
   };
 
 }

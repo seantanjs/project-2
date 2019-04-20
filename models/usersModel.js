@@ -53,8 +53,34 @@ module.exports = (dbPoolInstance) => {
 
     }
 
+    let addGoalData = (data, loggedInUserId, callback) => {
+        let userId = loggedInUserId
+        let targetAmount = data.target_amount;
+        let timeHorizon = data.time_horizon;
+
+        let startDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+        console.log("THE STARTDATE IS HERE",startDate);
+
+        let endDate = new Date(startDate.getFullYear() + parseInt(timeHorizon), startDate.getMonth(), startDate.getDate());
+        console.log("THE FUTURE IS HERE",endDate);
+
+        let queryString = "UPDATE users SET target_amount=$1, time_horizon=$2, start_date=$3, end_date=$4 WHERE id=$5";
+
+        let values = [targetAmount, timeHorizon, startDate, endDate, userId];
+
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+            if (error) {
+                callback(error,null);
+            } else {
+                callback(null,queryResult);
+            }
+        });
+
+    }
+
     return {
         authenticateUser,
-        addNewUser
+        addNewUser,
+        addGoalData
     };
 };

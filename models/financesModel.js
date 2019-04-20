@@ -3,22 +3,23 @@
  * Export model functions as a module
  * ===========================================
  */
-const cookieParser = require('cookie-parser');
-const sha256 = require('js-sha256');
-const SALT = 'secretsauce'; // cannot change
 
 module.exports = (dbPoolInstance) => {
 
-    // `dbPoolInstance` is accessible within this function scope
+    let addNewFinanceData = (data, loggedInUserId, callback) => {
+        console.log("DATA IS HERE LA", data);
+        let transactionDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+        let monthlyIncome = data.monthly_income_amount;
+        let monthlyExpenses = data.monthly_expenses_amount;
+        let monthlyInvestment = data.monthly_investment_amount;
+        let monthlySaving = data.monthly_saving_amount;
+        let noOfYears = parseInt(data.time_horizon);
+        let userId = loggedInUserId;
 
-    let authenticateUser = (data, callback) => {
 
-        const username = data.username;
-        const hash = sha256(data.password + SALT);
+        const queryString = "INSERT INTO finances (transaction_date, monthly_income_amount, monthly_expenses_amount, monthly_investment_amount, monthly_saving_amount, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *";
 
-        const queryString = "SELECT * FROM users WHERE username=$1 AND password=$2";
-
-        const values = [username, hash];
+        const values = [transactionDate, monthlyIncome, monthlyExpenses, monthlyInvestment, monthlySaving, userId];
 
         dbPoolInstance.query(queryString, values, (error, queryResult) => {
             if (error) {
@@ -34,27 +35,37 @@ module.exports = (dbPoolInstance) => {
     };
 
 
-    let addNewUser = (data, callback) => {
 
-        const username = data.username;
-        const hash = sha256(data.password + SALT);
 
-        let queryString = "INSERT INTO users (username, password) VALUES ($1, $2)";
+    let getFinanceData = (loggedInUserId, callback) => {
 
-        let values = [username, hash];
+        let userId = loggedInUserId;
+        // console.log("USERID IS:", userId);
+
+        const queryString = "SELECT * FROM finances WHERE user_id = $1";
+
+        const values = [userId];
 
         dbPoolInstance.query(queryString, values, (error, queryResult) => {
             if (error) {
+                // console.log("THESE ARE THE RESULT!",queryResult);
                 callback(error,null);
             } else {
-                callback(null,queryResult);
+                if(queryResult.rows.length !== 0) {
+                    // console.log("RESULTS AER HERE!", queryResult.rows)
+                    callback(null, queryResult);
+                } else {
+                    callback(null,null);
+                }
             }
         });
-
     }
 
+
+
+
     return {
-        authenticateUser,
-        addNewUser
+        addNewFinanceData,
+        getFinanceData
     };
 };
