@@ -48,11 +48,9 @@ module.exports = (dbPoolInstance) => {
 
         dbPoolInstance.query(queryString, values, (error, queryResult) => {
             if (error) {
-                // console.log("THESE ARE THE RESULT!",queryResult);
                 callback(error,null);
             } else {
                 if(queryResult.rows.length !== 0) {
-                    // console.log("RESULTS AER HERE!", queryResult.rows)
                     callback(null, queryResult);
                 } else {
                     callback(null,null);
@@ -60,7 +58,6 @@ module.exports = (dbPoolInstance) => {
             }
         });
     }
-
 
 
 

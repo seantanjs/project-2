@@ -138,9 +138,38 @@ module.exports = (db) => {
                 // response.render('goalTracking', {
                 // username : loggedInUser
                 // });
-                console.log(result.rows);
-                const data = { dataSet: result.rows}
-                response.render("goalTracking", data, {username: loggedInUserName} );
+                // console.log(result.rows);
+                const data = { dataSet: result.rows ,
+                               username: loggedInUserName };
+                // response.send("hello");
+                response.render("goalTracking", data );
+            }
+        });
+
+        } else {
+            response.status(500).send('Error');
+        }
+  };
+
+
+  let obtainFinanceDataForChart = (request, response) => {
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
+
+            const loggedInUserName = request.cookies["username"];
+
+            const loggedInUserId = request.cookies["userId"];
+
+           db.finances.getFinanceData(loggedInUserId, (err, result) => {
+            if(err !== null) {
+                console.log("query error test 5");
+                response.status(500).send("Error");
+            } else if(result !== null) {
+
+                console.log("RESULT RESULT", result.rows);
+
+                const data = { "res": result.rows };
+                response.send(data);
             }
         });
 
@@ -162,7 +191,8 @@ module.exports = (db) => {
     addNewFinances : addUserFinances,
     renderMonthlyFinances: renderMonthlyFinancesForm,
     addMonthlyFinances : addUserMonthlyFinances,
-    renderTracking: renderGoalTracking
+    renderTracking: renderGoalTracking,
+    obtainFinanceData: obtainFinanceDataForChart
   };
 
 }

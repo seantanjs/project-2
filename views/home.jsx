@@ -29,7 +29,7 @@ class Home extends React.Component {
             <div class="card-body">
                 <h5 class="card-title">Ready to enter your savings for the month?</h5>
                 <p class="card-text"><i class="fa fa-angle-right" style={{"font-size":"24px"}}></i> Enter your income, expenses, investment and saving for the current month.</p>
-                <p class="card-text"><i class="fa fa-angle-right" style={{"font-size":"24px"}}></i> Get the latest update on your goal tracking based your current month's input.</p>
+                <p class="card-text"><i class="fa fa-angle-right" style={{"font-size":"24px"}}></i> Get the latest update on your goal tracking based your current month's input.</p><br/>
                 <a href="/monthly_input" class="btn btn-primary">Submit This Month's Entry</a>
             </div>
         </div>
