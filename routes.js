@@ -49,6 +49,8 @@ module.exports = (app, allModels) => {
 
       app.get('/tracking', financesControllerCallbacks.renderTracking);
 
+      app.get('/overview', financesControllerCallbacks.renderOverview);
+
 
       app.get('/fetch_finance_data', financesControllerCallbacks.obtainChartData);
 

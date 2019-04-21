@@ -152,6 +152,36 @@ module.exports = (db) => {
         }
   };
 
+  let renderFinanceOverview = (request, response) => {
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
+
+            const loggedInUserName = request.cookies["username"];
+
+            const loggedInUserId = request.cookies["userId"];
+
+           db.finances.getFinanceData(loggedInUserId, (err, result) => {
+            if(err !== null) {
+                console.log("query error test 5");
+                response.status(500).send("Error");
+            } else if(result !== null) {
+                // response.cookie()
+                // response.render('goalTracking', {
+                // username : loggedInUser
+                // });
+                // console.log(result.rows);
+                const data = { dataSet: result.rows ,
+                               username: loggedInUserName };
+                // response.send("hello");
+                response.render("financeOverview", data );
+            }
+        });
+
+        } else {
+            response.status(500).send('Error');
+        }
+  };
+
 
   let obtainDataForChart = (request, response) => {
 
@@ -163,7 +193,7 @@ module.exports = (db) => {
 
            db.finances.getFinanceAndUserData(loggedInUserId, (err, result) => {
             if(err !== null) {
-                console.log("query error test 5");
+                console.log("query error test 6");
                 response.status(500).send("Error");
             } else if(result !== null) {
 
@@ -193,6 +223,7 @@ module.exports = (db) => {
     renderMonthlyFinances: renderMonthlyFinancesForm,
     addMonthlyFinances : addUserMonthlyFinances,
     renderTracking: renderGoalTracking,
+    renderOverview: renderFinanceOverview,
     obtainChartData: obtainDataForChart
   };
 

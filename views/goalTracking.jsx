@@ -6,7 +6,7 @@ var Layout = require('./layout');
 class GoalTracking extends React.Component {
   render() {
 
-    console.log("HERE IS DATASET", this.props.dataSet);
+    // console.log("HERE IS DATASET", this.props.dataSet);
 
 
     return (
@@ -28,15 +28,11 @@ class GoalTracking extends React.Component {
         </div>
 
 
-
-
-
-
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
         <script src="moment.js"></script>
-        <script src="/script.js"></script>
+        <script src="/script1.js"></script>
 
 
     </Layout>
