@@ -40,3 +40,31 @@
 	font-weight: 500;
 	font-size: 25px;
 }
+
+
+.line-chart {
+	/*border: 1px solid black;*/
+	/*box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);*/
+	/*margin: 0 auto;*/
+	/*padding: 15px 0;*/
+}
+
+.pieChart {
+	/*border: 1px solid black;*/
+	/*box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);*/
+	/*margin: 0 auto;*/
+	/*padding: 15px 0;*/
+}
+
+.donutChart {
+	/*border: 1px solid black;*/
+	/*box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);*/
+	/*margin: 0 auto;*/
+}
+
+.container {
+	/*border: 1px solid black;*/
+	/*display: flex;*/
+	/*align-items: center;*/
+	/*margin: 0 auto;*/
+}

@@ -12,14 +12,30 @@ class GoalTracking extends React.Component {
     return (
         <Layout loggedInUser = {this.props.username}>
 
-        <div class="container">
-            <canvas id="myChart"></canvas>
+       <div class="container">
+
+                <div class="col-10 line-chart" style={{"margin":"auto"}}>
+                <div>
+                    <canvas id="lineChart"></canvas>
+                </div>
+                <hr/>
+                <div>
+                    <canvas id="donutChart"></canvas>
+                </div>
+                </div>
+
+
         </div>
 
 
 
+
+
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-<script type = "text/JavaScript" src = "https://MomentJS.com/downloads/moment.js"></script>
+
+
+        <script src="moment.js"></script>
         <script src="/script.js"></script>
 
 
@@ -31,7 +47,7 @@ class GoalTracking extends React.Component {
 module.exports = GoalTracking;
 
 
-// <canvas id="myChart"></canvas>
+//  <canvas id="myChart"></canvas>
 
 
 
@@ -48,3 +64,40 @@ module.exports = GoalTracking;
 //   </div>
 //   <canvas id="canvas"></canvas>
 // </div>
+
+//   <script type = "text/JavaScript" src = "https://MomentJS.com/downloads/moment.js"></script>
+
+
+
+// <div class="container">
+//             <div class="row">
+
+//                 <div class="col-6">
+//                     <canvas id="lineChart"></canvas>
+//                 </div>
+
+//                 <div class="col-6">
+//                     <canvas id="pieChart"></canvas>
+//                 </div>
+//             </div>
+//             <div class="col-8" style={{"margin":"auto"}}>
+//             <canvas id="yourChart"></canvas>
+//             </div>
+//         </div>
+
+
+// <div class="container">
+//             <div class="row">
+
+//                 <div class="col-6 line-chart">
+//                     <canvas id="lineChart"></canvas>
+//                 </div>
+
+//                 <div class="col-6 pieChart">
+//                     <canvas id="pieChart"></canvas>
+//                 </div>
+//             </div>
+//             <div class="col-8 donutChart" style={{"margin":"auto"}}>
+//             <canvas id="donutChart"></canvas>
+//             </div>
+//         </div>

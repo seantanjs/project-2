@@ -16,7 +16,7 @@ class GoalForm extends React.Component {
       <div class="goal-container">
 
 
-            <div class="form-wrapper">
+            <div class="form-wrapper card">
 
                 <form method="POST" action={actionAttribute}>
                     <div class="form-row">
@@ -30,9 +30,9 @@ class GoalForm extends React.Component {
 
                     <div class="form-row">
                             <h1 class="col-4">Step 2</h1>
-                            <h2 class="col-4">No. of years to achieve goal</h2><br/>
+                            <h2 class="col-4">No. of months to achieve goal</h2><br/>
                             <div class="col-4">
-                                <h4 class="mr-3 d-inline">S$</h4>
+                                <h4 class="mr-3 d-inline">Mo</h4>
                                 <input type="text" name="time_horizon"class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
                             </div>
                     </div><br/><br/>

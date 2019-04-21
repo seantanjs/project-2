@@ -61,7 +61,10 @@ module.exports = (dbPoolInstance) => {
         let startDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         console.log("THE STARTDATE IS HERE",startDate);
 
-        let endDate = new Date(startDate.getFullYear() + parseInt(timeHorizon), startDate.getMonth(), startDate.getDate());
+        let endDate = new Date(startDate.getFullYear(), startDate.getMonth() + parseInt(timeHorizon), startDate.getDate());
+        if(endDate.getMonth() > 12) {
+            let endDate = new Date(endDate.getFullYear() + 1, endDate.getMonth() - 12, endDate.getDate());
+        }
         console.log("THE FUTURE IS HERE",endDate);
 
         let queryString = "UPDATE users SET target_amount=$1, time_horizon=$2, start_date=$3, end_date=$4 WHERE id=$5";

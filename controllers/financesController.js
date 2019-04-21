@@ -61,6 +61,7 @@ module.exports = (db) => {
                     response.status(500).send("Error");
                 } else if(result !== null) {
                     // response.send("success!");
+                    // response.cookie('getStarted', true);
                     response.redirect("tracking");
                 }
             })
@@ -152,7 +153,7 @@ module.exports = (db) => {
   };
 
 
-  let obtainFinanceDataForChart = (request, response) => {
+  let obtainDataForChart = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
 
@@ -160,7 +161,7 @@ module.exports = (db) => {
 
             const loggedInUserId = request.cookies["userId"];
 
-           db.finances.getFinanceData(loggedInUserId, (err, result) => {
+           db.finances.getFinanceAndUserData(loggedInUserId, (err, result) => {
             if(err !== null) {
                 console.log("query error test 5");
                 response.status(500).send("Error");
@@ -192,7 +193,7 @@ module.exports = (db) => {
     renderMonthlyFinances: renderMonthlyFinancesForm,
     addMonthlyFinances : addUserMonthlyFinances,
     renderTracking: renderGoalTracking,
-    obtainFinanceData: obtainFinanceDataForChart
+    obtainChartData: obtainDataForChart
   };
 
 }

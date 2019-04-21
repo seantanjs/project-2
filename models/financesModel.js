@@ -36,13 +36,38 @@ module.exports = (dbPoolInstance) => {
 
 
 
-
     let getFinanceData = (loggedInUserId, callback) => {
 
         let userId = loggedInUserId;
         // console.log("USERID IS:", userId);
 
         const queryString = "SELECT * FROM finances WHERE user_id = $1";
+
+
+        const values = [userId];
+
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+            if (error) {
+                callback(error,null);
+            } else {
+                if(queryResult.rows.length !== 0) {
+                    callback(null, queryResult);
+                } else {
+                    callback(null,null);
+                }
+            }
+        });
+    }
+
+
+
+    let getFinanceAndUserData = (loggedInUserId, callback) => {
+
+        let userId = loggedInUserId;
+        // console.log("USERID IS:", userId);
+
+        const queryString = "SELECT * from users INNER JOIN finances ON (users.id = finances.user_id) WHERE user_id = $1";
+
 
         const values = [userId];
 
@@ -63,6 +88,7 @@ module.exports = (dbPoolInstance) => {
 
     return {
         addNewFinanceData,
-        getFinanceData
+        getFinanceData,
+        getFinanceAndUserData
     };
 };
