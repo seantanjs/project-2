@@ -14,22 +14,20 @@ class EditForm extends React.Component {
     return (
         <Layout loggedInUser = {this.props.username}>
 
-        <div class="edit-form">
+        <div class="edit-form col-6">
 
-        <div class="col-10">
 
                 <form method="POST" action={`/transactions/${this.props.txnDate}?_method=PUT`}>
-                <h1>Edit Form</h1>
+                <h1>Edit Form</h1><br/>
 
                     <h4 class="mr-3 d-inline">Edit Savings</h4>
-                    <input type="text" name="num" value={this.props.res[0].monthly_saving_amount}/><br/><br/>
+                    <input class="d-inline" type="text" name="monthly_saving_amount" value={this.props.res[0].monthly_saving_amount}/><br/><br/>
                     <input type="submit" class="btn btn-primary" value="Confirm"/>&nbsp;&nbsp;&nbsp;&nbsp;
                     <a href={`/transactions`} class="btn btn-danger">Back</a>
 
                 <br/><br/>
                 </form>
 
-        </div>
 
         </div>
 

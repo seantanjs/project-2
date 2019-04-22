@@ -73,5 +73,7 @@
 .edit-form {
 	display: flex;
 	justify-content: center;
-	border: 1px solid red;
+	box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.2);
+	margin: 100px auto;
+	padding: 70px;
 }

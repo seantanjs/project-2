@@ -80,27 +80,28 @@ module.exports = (dbPoolInstance) => {
     }
 
 
-    // let editOneTxn = (txnDateToBeEdited, callback) => {
+    let editOneTxn = (changeObj, txnDateToBeEdited, callback) => {
 
-    //     let txnDate = txnDateToBeEdited;
+        let txnDate = txnDateToBeEdited;
+        let change = changeObj.monthly_saving_amount;
 
-    //     const queryString = "UPDATE * FROM finances WHERE user_id = $1";
+        const queryString = "UPDATE finances SET monthly_saving_amount = $1 WHERE transaction_date = $2 RETURNING *";
 
 
-    //     const values = [userId];
+        const values = [change, txnDate];
 
-    //     dbPoolInstance.query(queryString, values, (error, queryResult) => {
-    //         if (error) {
-    //             callback(error,null);
-    //         } else {
-    //             if(queryResult.rows.length !== 0) {
-    //                 callback(null, queryResult);
-    //             } else {
-    //                 callback(null,null);
-    //             }
-    //         }
-    //     });
-    // }
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+            if (error) {
+                callback(error,null);
+            } else {
+                if(queryResult.rows.length !== 0) {
+                    callback(null, queryResult);
+                } else {
+                    callback(null,null);
+                }
+            }
+        });
+    }
 
 
 
@@ -158,7 +159,7 @@ module.exports = (dbPoolInstance) => {
         addNewFinanceData,
         deleteOneTxn,
         getTransactionDateForEdit,
-        // editOneTxn,
+        editOneTxn,
         getFinanceData,
         getFinanceAndUserData
     };

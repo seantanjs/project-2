@@ -312,21 +312,20 @@ let editOneTransaction = (request, response) => {
             const loggedInUserId = request.cookies["userId"];
 
             const txnDateToBeEdited = request.params.txnDate;
-            console.log(txnDateToBeEdited);
 
-            response.send("DONE WITH THIS SHIT!")
-        //    db.finances.editOneTxn(txnDateToBeEdited, (err, result) => {
-        //     if(err !== null) {
-        //         console.log("query error test 9");
-        //         response.status(500).send("Error");
-        //     } else if(result !== null) {
+            const changeObj = request.body;
 
-        //         console.log("RESULT RESULT", result.rows);
+           db.finances.editOneTxn(changeObj, txnDateToBeEdited, (err, result) => {
+            if(err !== null) {
+                console.log("query error test 9");
+                response.status(500).send("Error");
+            } else if(result !== null) {
 
-        //         const data = { "res": result.rows };
-        //         response.send(data);
-        //     }
-        // });
+                console.log("RESULT RESULT", result.rows);
+
+                response.send("Transaction has been edited!" + "<br><br><a href='/transactions'>Back to transactions</a>" );
+            }
+        });
 
         } else {
             response.status(500).send('Error');
