@@ -8,7 +8,7 @@ module.exports = (dbPoolInstance) => {
 
     let addNewFinanceData = (data, loggedInUserId, callback) => {
         console.log("DATA IS HERE LA", data);
-        let transactionDate = new Date(new Date().getFullYear(), new Date().getMonth() + 5, new Date().getDate());
+        let transactionDate = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
         let monthlyIncome = data.monthly_income_amount;
         let monthlyExpenses = data.monthly_expenses_amount;
         let monthlyInvestment = data.monthly_investment_amount;

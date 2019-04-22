@@ -76,7 +76,7 @@ module.exports = (db) => {
                 } else if(result !== null) {
                     // response.send("success!");
                     // response.cookie('getStarted', true);
-                    response.redirect("tracking");
+                    response.redirect("goal-tracking");
                 }
             })
         }
@@ -128,7 +128,7 @@ module.exports = (db) => {
             console.log("query error test 3");
             response.status(500).send("Error");
         } else if(result !== null) {
-            response.redirect("tracking");
+            response.redirect("goal-tracking");
         }
     })
 
