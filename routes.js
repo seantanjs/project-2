@@ -39,13 +39,17 @@ module.exports = (app, allModels) => {
       app.post('/goal', financesControllerCallbacks.addNewFinances);
 
 
-
-
        app.get('/monthly_input', financesControllerCallbacks.renderMonthlyFinances);
 
       app.post('/monthly_input', financesControllerCallbacks.addMonthlyFinances);
 
+       app.get('/transactions', financesControllerCallbacks.renderTransactions);
 
+       app.delete('/transactions/:txnDate', financesControllerCallbacks.deleteTransaction);
+
+        app.get('/transactions/:txnDate/edit', financesControllerCallbacks.renderEdit);
+
+       app.put('/transactions/:txnDate', financesControllerCallbacks.editTransaction);
 
       app.get('/tracking', financesControllerCallbacks.renderTracking);
 

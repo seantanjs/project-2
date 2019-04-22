@@ -35,6 +35,74 @@ module.exports = (dbPoolInstance) => {
     };
 
 
+    let deleteOneTxn = (txnDateToBeDeleted, callback) => {
+
+        let txnDate = txnDateToBeDeleted;
+
+        const queryString = "DELETE FROM finances WHERE transaction_date = $1 RETURNING *";
+
+        const values = [txnDate];
+
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+            if (error) {
+                callback(error,null);
+            } else {
+                if(queryResult.rows.length !== 0) {
+                    callback(null, queryResult);
+                } else {
+                    callback(null,null);
+                }
+            }
+        });
+    }
+
+
+    let getTransactionDateForEdit = (txnDateToBeEdited, callback) => {
+
+        let txnDate = txnDateToBeEdited;
+
+        const queryString = "SELECT * FROM finances WHERE transaction_date = $1";
+
+
+        const values = [txnDate];
+
+        dbPoolInstance.query(queryString, values, (error, queryResult) => {
+            if (error) {
+                callback(error,null);
+            } else {
+                if(queryResult.rows.length !== 0) {
+                    callback(null, queryResult);
+                } else {
+                    callback(null,null);
+                }
+            }
+        });
+    }
+
+
+    // let editOneTxn = (txnDateToBeEdited, callback) => {
+
+    //     let txnDate = txnDateToBeEdited;
+
+    //     const queryString = "UPDATE * FROM finances WHERE user_id = $1";
+
+
+    //     const values = [userId];
+
+    //     dbPoolInstance.query(queryString, values, (error, queryResult) => {
+    //         if (error) {
+    //             callback(error,null);
+    //         } else {
+    //             if(queryResult.rows.length !== 0) {
+    //                 callback(null, queryResult);
+    //             } else {
+    //                 callback(null,null);
+    //             }
+    //         }
+    //     });
+    // }
+
+
 
     let getFinanceData = (loggedInUserId, callback) => {
 
@@ -88,6 +156,9 @@ module.exports = (dbPoolInstance) => {
 
     return {
         addNewFinanceData,
+        deleteOneTxn,
+        getTransactionDateForEdit,
+        // editOneTxn,
         getFinanceData,
         getFinanceAndUserData
     };

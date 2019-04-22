@@ -120,6 +120,36 @@ module.exports = (db) => {
 
   }
 
+  let renderSavingsTransactions = (request, response) => {
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
+
+            const loggedInUserName = request.cookies["username"];
+
+            const loggedInUserId = request.cookies["userId"];
+
+           db.finances.getFinanceAndUserData(loggedInUserId, (err, result) => {
+            if(err !== null) {
+                console.log("query error test 4");
+                response.status(500).send("Error");
+            } else if(result !== null) {
+                // response.cookie()
+                // response.render('goalTracking', {
+                // username : loggedInUser
+                // });
+                // console.log(result.rows);
+                const data = { dataSet: result.rows ,
+                               username: loggedInUserName };
+                // response.send("hello");
+                response.render("transactions", data );
+            }
+        });
+
+        } else {
+            response.status(500).send('Error');
+        }
+  };
+
 
 
   let renderGoalTracking = (request, response) => {
@@ -210,6 +240,100 @@ module.exports = (db) => {
   };
 
 
+  let deleteOneTransaction = (request, response) => {
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
+
+            const loggedInUserName = request.cookies["username"];
+
+            const loggedInUserId = request.cookies["userId"];
+
+            const txnDateToBeDeleted = request.params.txnDate;
+            console.log(txnDateToBeDeleted);
+
+
+           db.finances.deleteOneTxn(txnDateToBeDeleted, (err, result) => {
+            if(err !== null) {
+                console.log("query error test 7");
+                response.status(500).send("Error");
+            } else if(result !== null) {
+
+                console.log("RESULT RESULT", result.rows);
+
+                response.send("Transaction has been deleted!" + "<br><br><a href='/transactions'>Back to transactions</a>" );
+            }
+        });
+
+        } else {
+            response.status(500).send('Error');
+        }
+  };
+
+
+
+  let renderEditForm = (request, response) => {
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
+
+            const loggedInUserName = request.cookies["username"];
+
+            const loggedInUserId = request.cookies["userId"];
+
+            const txnDateToBeEdited = request.params.txnDate;
+            console.log(txnDateToBeEdited);
+
+           db.finances.getTransactionDateForEdit(txnDateToBeEdited, (err, result) => {
+            if(err !== null) {
+                console.log("query error test 8");
+                response.status(500).send("Error");
+            } else if(result !== null) {
+
+                console.log("RESULT RESULT", result.rows);
+
+                const data = { res: result.rows,
+                                username: loggedInUserName,
+                                txnDate: txnDateToBeEdited };
+                response.render("editForm", data);
+            }
+        });
+
+        } else {
+            response.status(500).send('Error');
+        }
+  };
+
+
+let editOneTransaction = (request, response) => {
+
+    if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
+
+            const loggedInUserName = request.cookies["username"];
+
+            const loggedInUserId = request.cookies["userId"];
+
+            const txnDateToBeEdited = request.params.txnDate;
+            console.log(txnDateToBeEdited);
+
+            response.send("DONE WITH THIS SHIT!")
+        //    db.finances.editOneTxn(txnDateToBeEdited, (err, result) => {
+        //     if(err !== null) {
+        //         console.log("query error test 9");
+        //         response.status(500).send("Error");
+        //     } else if(result !== null) {
+
+        //         console.log("RESULT RESULT", result.rows);
+
+        //         const data = { "res": result.rows };
+        //         response.send(data);
+        //     }
+        // });
+
+        } else {
+            response.status(500).send('Error');
+        }
+  };
+
+
 
   /**
    * ===========================================
@@ -222,6 +346,10 @@ module.exports = (db) => {
     addNewFinances : addUserFinances,
     renderMonthlyFinances: renderMonthlyFinancesForm,
     addMonthlyFinances : addUserMonthlyFinances,
+    renderTransactions: renderSavingsTransactions,
+    deleteTransaction: deleteOneTransaction,
+    renderEdit: renderEditForm,
+    editTransaction: editOneTransaction,
     renderTracking: renderGoalTracking,
     renderOverview: renderFinanceOverview,
     obtainChartData: obtainDataForChart
