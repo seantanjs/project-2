@@ -77,3 +77,64 @@
 	margin: 100px auto;
 	padding: 70px;
 }
+
+.content-wrapper {
+	color: rgb(0,196,143);
+}
+
+.first {
+	background-color: white;
+}
+
+.second {
+	background-color: rgb(0,196,143);
+}
+
+.page-section-title {
+	padding: 30px;
+}
+
+.form-section-title {
+	text-align: center;
+}
+
+#fname, #lname, #subject {
+  width: 100%;
+  padding: 17px 20px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-weight: 600;
+  font-size: 16px;
+  color: #6c767f;
+  box-shadow: 0 10px 24px 0 hsla(210,8%,54%,.16);
+}
+
+#sendMsgBtn {
+  background-color: #12c48b;
+  box-shadow: 0 4px 8px 0 rgba(18,196,139,.32);
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 30px;
+  text-align: center;
+  cursor: pointer;
+  min-width: 274px;
+}
+
+
+
+label {
+	font-size: 12px;
+	font-weight: 600;
+	color: #6c767f;
+	margin-left: 20px;
+}
+
+.container {
+  border-radius: 5px;
+  padding: 20px;
+}

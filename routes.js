@@ -31,6 +31,8 @@ module.exports = (app, allModels) => {
     app.get('/logout', usersControllerCallbacks.logoutUser);
 
 
+    app.get('/about-us', usersControllerCallbacks.renderAboutUs);
+
 //financessControlCallbacks is a callback function within the controller file
     app.get('/home', financesControllerCallbacks.renderHome);
 

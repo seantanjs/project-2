@@ -69,6 +69,19 @@ module.exports = (db) => {
 
 
 
+  let renderAboutUsPage = (request, response) => {
+         if(request.cookies['username'] !== null){
+
+            const loggedInUser = request.cookies["username"];
+
+            response.render('aboutUs', { username : loggedInUser });
+        } else {
+            response.status(500).send('Error');
+        }
+  };
+
+
+
   /**
    * ===========================================
    * Export controller functions as a module
@@ -79,7 +92,8 @@ module.exports = (db) => {
     registerNewUser: registerUser,
     renderLogin: renderLoginForm,
     loginUser: loginUser,
-    logoutUser: logoutUser
+    logoutUser: logoutUser,
+    renderAboutUs: renderAboutUsPage
   };
 
 }

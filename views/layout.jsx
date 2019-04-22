@@ -31,7 +31,7 @@ class Layout extends React.Component {
                 <a class="nav-link" href="/transactions">Transactions</a>
             </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
-                <a class="nav-link" href="#">About us</a>
+                <a class="nav-link" href="/about-us">About us</a>
             </li>
     </ul>
 

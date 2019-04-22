@@ -11,6 +11,12 @@ module.exports = (db) => {
    */
 
 
+/**
+* ===========================================
+* VIEW HOME PAGE
+* ===========================================
+*/
+
   let renderHomePage = (request, response) => {
         if(request.cookies['username'] !== null){
 
@@ -26,7 +32,15 @@ module.exports = (db) => {
 
   };
 
+///////////////////////////////////////////////////////
 
+/**
+* ===========================================
+* GET STARTED - INITIALIZE TARGET GOAL, TIME HORIZON, INITIAL FINANCES
+* ===========================================
+*/
+
+//GET STARTED: app.get('/goal')
   let renderGoalForm = (request, response) => {
 
     if(request.cookies['username'] !== null){
@@ -41,7 +55,7 @@ module.exports = (db) => {
         }
   };
 
-
+//GET STARTED: app.post('/goal')
   let addUserFinances = (request, response) => {
     console.log(request.body);
 
@@ -73,12 +87,18 @@ module.exports = (db) => {
             response.status(500).send('Error');
         }
 
-
-
   }
 
+//////////////////////////////////////////////////////////
+
+/**
+* ===========================================
+* ADD FINANCIAL DATA (MONTHLY DATA)
+* ===========================================
+*/
 
 
+//SUBMIT THIS MONTH'S ENTRY: app.get('/monthly_input')
   let renderMonthlyFinancesForm = (request, response) => {
 
     if(request.cookies['username'] !== null){
@@ -94,6 +114,7 @@ module.exports = (db) => {
   };
 
 
+//SUBMIT THIS MONTH'S ENTRY: app.post('/monthly_input')
   let addUserMonthlyFinances = (request, response) => {
     console.log(request.body);
 
@@ -116,10 +137,19 @@ module.exports = (db) => {
             response.status(500).send('Error');
         }
 
-
-
   }
 
+
+/////////////////////////////////////////////////////////
+
+
+/**
+* ===========================================
+* VIEW TRANSACTIONS
+* ===========================================
+*/
+
+//CLICK ON "TRANSACTIONS" LINK: app.get('/transactions')
   let renderSavingsTransactions = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
@@ -150,8 +180,15 @@ module.exports = (db) => {
         }
   };
 
+/////////////////////////////////////////////////////////
 
+/**
+* ===========================================
+* VIEW GOAL TRACKING
+* ===========================================
+*/
 
+//CLICK ON "GOAL TRACKING" LINK: app.get('/tracking')
   let renderGoalTracking = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
@@ -182,6 +219,16 @@ module.exports = (db) => {
         }
   };
 
+/////////////////////////////////////////////////////////
+
+
+/**
+* ===========================================
+* VIEW FINANCIAL OVERVIEW
+* ===========================================
+*/
+
+//CLICK ON "FINANCIAL OVERVIEW" LINK: app.get('/overview')
   let renderFinanceOverview = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
@@ -212,7 +259,16 @@ module.exports = (db) => {
         }
   };
 
+/////////////////////////////////////////////////////////
 
+/**
+* ===========================================
+* AJAX CALL
+* ===========================================
+*/
+
+
+//HANDLER FOR AJAX CALL TO RENDER CHART.JS: app.get('/fetch_finance_data')
   let obtainDataForChart = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
@@ -240,6 +296,17 @@ module.exports = (db) => {
   };
 
 
+/////////////////////////////////////////////////////////
+
+
+/**
+* ===========================================
+* DELETE
+* ===========================================
+*/
+
+
+//CLICK ON "TRANSACTIONS" LINK & CLICK ON "DELETE": app.delete('/transactions/:txnDate')
   let deleteOneTransaction = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
@@ -269,8 +336,15 @@ module.exports = (db) => {
         }
   };
 
+///////////////////////////////////////////////////////
 
+/**
+* ===========================================
+* EDIT
+* ===========================================
+*/
 
+//CLICK ON "TRANSACTIONS" LINK & CLICK ON "EDIT": app.get('/transactions/:txnDate/edit')
   let renderEditForm = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
@@ -303,6 +377,7 @@ module.exports = (db) => {
   };
 
 
+//CLICK ON "TRANSACTIONS" LINK & CLICK ON "EDIT" & MADE CHANGES & CLICK ON "CONFIRM": app.put('/transactions/:txnDate')
 let editOneTransaction = (request, response) => {
 
     if(request.cookies['username'] !== null && request.cookies['userId'] !== null){
@@ -332,7 +407,7 @@ let editOneTransaction = (request, response) => {
         }
   };
 
-
+/////////////////////////////////////////////////////////
 
   /**
    * ===========================================
