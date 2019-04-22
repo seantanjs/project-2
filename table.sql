@@ -9,12 +9,12 @@ end_date DATE
 );
 
 
--- CREATE TABLE IF NOT EXISTS finances (
--- id SERIAL PRIMARY KEY,
--- transaction_date DATE,
--- monthly_income_amount DECIMAL (10,2),
--- monthly_expenses_amount DECIMAL (10,2),
--- monthly_investment_amount DECIMAL (10,2),
--- monthly_saving_amount DECIMAL (10,2),
--- user_id INTEGER
--- );
+CREATE TABLE IF NOT EXISTS finances (
+id SERIAL PRIMARY KEY,
+transaction_date DATE,
+monthly_income_amount DECIMAL (10,2),
+monthly_expenses_amount DECIMAL (10,2),
+monthly_investment_amount DECIMAL (10,2),
+monthly_saving_amount DECIMAL (10,2),
+user_id INTEGER
+);

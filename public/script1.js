@@ -213,12 +213,17 @@ currentMonthFinances.push(response.res[response.res.length-1].monthly_investment
 currentMonthFinances.push(response.res[response.res.length-1].monthly_saving_amount);
 
 
+var targetAmountArray = [];
+
+for(var i=0; i<response.res.length; i++) {
+    let targetAmount = parseInt(response.res[0].target_amount);
+
+    targetAmountArray.push(targetAmount);
+}
+
+
 
 var ctx = document.getElementById('lineChart');
-
-// Chart.defaults.global.defaultFontFamily = 'Lato';
-// Chart.defaults.global.defaultFontSize = 18;
-// Chart.defaults.global.defaultFontColor = '#777';
 
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -235,14 +240,14 @@ var myChart = new Chart(ctx, {
             fill: false,
             borderDash: [5,10],
             // borderColor: 'rgba(255, 100, 132, 0.3)',
-            borderColor: 'rgb(169, 169, 169, 0.3)',
+            borderColor: 'rgb(169, 169, 169, 0.5)',
             type: 'line',
             // backgroundColor: 'rgba(255, 100, 132, 0.5)'
             backgroundColor: 'rgba(169, 169, 169, 0.5)'
         }
         // {
         //     label: 'Target Goal Amount',
-        //     data: [12000,12000,12000,12000,12000,12000,12000,12000],
+        //     data: targetAmountArray,
         //     fill: false,
         //     borderColor: 'rgba(48, 162, 232, 0.3)',
         //     type: 'line',
@@ -272,7 +277,7 @@ var myChart = new Chart(ctx, {
                 },
                 ticks: {
                     beginAtZero:true,
-                    max: 15000
+                    max: 12000
                 }
             }],
             xAxes: [{
@@ -284,95 +289,6 @@ var myChart = new Chart(ctx, {
                 fontSize: 20
                 }
             }]
-        }
-    }
-});
-
-
-//build more chart - one pie chart to show breakdown by income, expenses, investment and savings
-
-// var ctx = document.getElementById('pieChart');
-
-
-//   // var fillColors = [chartColors.green,  chartColors.green, chartColors.red, chartColors.red, chartColors.blue, chartColors.purple];
-
-// var myChart = new Chart(ctx, {
-//     type: 'pie',
-//     data: {
-//         labels: transactionData,
-//         datasets: [{
-//             label: 'Accumulated Savings',
-//             data: savingsData,
-//             fill: true,
-//             backgroundColor: [
-//             'rgba(255, 100, 132, 0.5)',
-//             'rgba(255, 100, 132, 0.5)',
-//             'rgba(255, 100, 132, 0.5)',
-//             'rgba(255, 100, 132, 0.5)',
-//             'rgba(255, 100, 132, 0.5)',
-//             'rgba(255, 100, 132, 0.5)',
-//             'rgba(255, 100, 132, 0.5)',
-//             'rgba(255, 200, 132, 0.5)']
-//         }]
-//     },
-//     options: {
-//         title: {
-//             display: true,
-//             text: 'TBA',
-//             fontSize: 25
-//         },
-//         scales: {
-//             yAxes: [{
-//                 scaleLabel: {
-//                 display: true,
-//                 labelString: 'Savings',
-//                 fontSize: 20
-//                 },
-//                 ticks: {
-//                     beginAtZero:true,
-//                     max: 150000
-//                 }
-//             }],
-//             xAxes: [{
-//                 // type: 'time',
-//                 // unit: 'month',
-//             scaleLabel: {
-//                 display: true,
-//                 labelString: 'Date',
-//                 fontSize: 20
-//                 }
-//             }]
-//         }
-//     }
-// });
-
-
-
-
-
-var ctx = document.getElementById('donutChart');
-
-
-  // var fillColors = [chartColors.green,  chartColors.green, chartColors.red, chartColors.red, chartColors.blue, chartColors.purple];
-
-var myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        labels: ['Expenses', 'Investment', 'Savings'],
-        datasets: [{
-            data: currentMonthFinances,
-            backgroundColor: [
-            'rgb(251, 202, 95)',
-            'rgb(48, 162, 232)',
-            'rgb(255, 100, 132)',
-            ]
-        }]
-    },
-    options: {
-        title: {
-            display: true,
-            text: 'Financial Breakdown',
-            fontSize: 25
         }
     }
 });

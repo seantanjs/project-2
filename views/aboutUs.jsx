@@ -59,7 +59,7 @@ class AboutUs extends React.Component {
                 <label>Message</label>
                 <textarea id="subject" name="subject" placeholder="Your message" style={{"min-height":"215px"}}></textarea>
 
-                <input id="sendMsgBtn" type="submit" value="Send message"/>
+                <input disabled="true" id="sendMsgBtn" type="submit" value="Send message"/>
               </form>
         </div>
     </div>

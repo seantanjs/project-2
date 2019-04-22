@@ -53,7 +53,9 @@ module.exports = (app, allModels) => {
 
        app.put('/transactions/:txnDate', financesControllerCallbacks.editTransaction);
 
-      app.get('/tracking', financesControllerCallbacks.renderTracking);
+      app.get('/goal-tracking', financesControllerCallbacks.renderGoalTracking);
+
+      app.get('/savings-tracking', financesControllerCallbacks.renderSavingsTracking);
 
       app.get('/overview', financesControllerCallbacks.renderOverview);
 

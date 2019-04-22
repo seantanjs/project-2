@@ -12,20 +12,12 @@ class GoalTracking extends React.Component {
     return (
         <Layout loggedInUser = {this.props.username}>
 
-       <div class="container">
 
-                <div class="col-10 line-chart" style={{"margin":"auto"}}>
-                <div>
+                <div class="col-10 line-chart" style={{"margin":"30px auto"}}>
                     <canvas id="lineChart"></canvas>
                 </div>
-                <hr/>
-                <div>
-                    <canvas id="donutChart"></canvas>
-                </div>
-                </div>
 
 
-        </div>
 
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>

@@ -20,16 +20,19 @@ class Layout extends React.Component {
     <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="/home">Home</a>
-            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
              <li class="nav-item">
-                <a class="nav-link" href="/tracking">Goal Tracking</a>
-            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a class="nav-link" href="/goal-tracking">Goal Tracking</a>
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+                <a class="nav-link" href="/savings-tracking">Savings Tracking</a>
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
                 <a class="nav-link" href="/overview">Financial Overview</a>
-            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
                 <a class="nav-link" href="/transactions">Transactions</a>
-            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <li class="nav-item">
                 <a class="nav-link" href="/about-us">About us</a>
             </li>

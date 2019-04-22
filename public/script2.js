@@ -39,10 +39,14 @@ var myChart = new Chart(ctx, {
         datasets: [{
             data: currentMonthFinances,
             backgroundColor: [
-            'rgb(251, 202, 95)',
-            'rgb(48, 162, 232)',
-            'rgb(255, 100, 132)',
-            ]
+            'rgba(255, 99, 132, 0.6)',
+            'rgba(54, 162, 235, 0.6)',
+            'rgba(255, 206, 86, 0.6)',
+            ],
+            borderWidth: 1,
+            borderColor: '#777',
+            hoverBorderWidth:3,
+            hoverBordercolor:'#000'
         }]
     },
     options: {
