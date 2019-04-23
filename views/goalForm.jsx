@@ -24,7 +24,7 @@ class GoalForm extends React.Component {
                             <h2 class="col-4">My Target Goal</h2><br/>
                             <div class="col-4">
                                 <h4 class="mr-3 d-inline">S$</h4>
-                                <input type="text" name="target_amount"class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
+                                <input type="number" name="target_amount"class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
                             </div>
                     </div><br/><br/>
 
@@ -33,7 +33,7 @@ class GoalForm extends React.Component {
                             <h2 class="col-4">No. of months to achieve goal</h2><br/>
                             <div class="col-4">
                                 <h4 class="mr-3 d-inline">Mo</h4>
-                                <input type="text" name="time_horizon"class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
+                                <input type="number" name="time_horizon"class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
                             </div>
                     </div><br/><br/>
 
@@ -51,13 +51,13 @@ class GoalForm extends React.Component {
                             </div>
     <div class="col-4">
         <h4 class="mr-3 d-inline">S$</h4>
-        <input id="income" onKeyDown="calculateSavings()" type="text" name="monthly_income_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
+        <input id="income" onKeyDown="calculateSavings()" type="number" name="monthly_income_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
                 <h4 class="mr-3 d-inline">S$</h4>
-                <input id="expenses" type="text" name="monthly_expenses_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
+                <input id="expenses" type="number" name="monthly_expenses_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
                 <h4 class="mr-3 d-inline">S$</h4>
-                <input id="investment" type="text" name="monthly_investment_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
+                <input id="investment" type="number" name="monthly_investment_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/><br/>
                 <h4 class="mr-3 d-inline">S$</h4>
-                <input type="text" name="monthly_saving_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
+                <input type="number" name="monthly_saving_amount" class="form-control textbox w-75 d-inline" placeholder="0" maxlength="10"/>
                             </div>
                     </div>
                     <br/>
