@@ -156,7 +156,7 @@ var request = new XMLHttpRequest();
 request.addEventListener("load", responseHandler);
 
 // ready the system by calling open, and specifying the url
-var url = "http://localhost:3000/fetch_finance_data";
+var url = "/fetch_finance_data";
 request.open("GET", url);
 
 // send the request
