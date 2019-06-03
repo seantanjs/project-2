@@ -213,13 +213,15 @@ currentMonthFinances.push(response.res[response.res.length-1].monthly_investment
 currentMonthFinances.push(response.res[response.res.length-1].monthly_saving_amount);
 
 
-var targetAmountArray = [];
+var targetAmountArray = [response.res[0].target_amount];
 
 for(var i=0; i<response.res.length; i++) {
     let targetAmount = parseInt(response.res[0].target_amount);
 
     targetAmountArray.push(targetAmount);
 }
+
+targetAmountArray.push(response.res[0].target_amount);
 
 
 
@@ -234,25 +236,26 @@ var myChart = new Chart(ctx, {
             data: savingsData,
             borderColor: 'rgba(255, 100, 132, 0.5)',
             backgroundColor: 'rgba(255, 100, 132, 0.5)'
-        }, {
-            label: 'Target Goal Amount',
-            data: savingsDataWithTarget,
-            fill: false,
-            borderDash: [5,10],
-            // borderColor: 'rgba(255, 100, 132, 0.3)',
-            borderColor: 'rgb(169, 169, 169, 0.5)',
-            type: 'line',
-            // backgroundColor: 'rgba(255, 100, 132, 0.5)'
-            backgroundColor: 'rgba(169, 169, 169, 0.5)'
-        }
+        },
         // {
         //     label: 'Target Goal Amount',
-        //     data: targetAmountArray,
+        //     data: savingsDataWithTarget,
         //     fill: false,
-        //     borderColor: 'rgba(48, 162, 232, 0.3)',
+        //     borderDash: [5,10],
+        //     // borderColor: 'rgba(255, 100, 132, 0.3)',
+        //     borderColor: 'rgb(169, 169, 169, 0.5)',
         //     type: 'line',
-        //     backgroundColor: 'rgba(48, 162, 232, 0.5)'
+        //     // backgroundColor: 'rgba(255, 100, 132, 0.5)'
+        //     backgroundColor: 'rgba(169, 169, 169, 0.5)'
         // }
+        {
+            label: 'Target Goal Amount',
+            data: targetAmountArray,
+            fill: false,
+            borderColor: 'rgba(48, 162, 232, 0.3)',
+            type: 'line',
+            backgroundColor: 'rgba(48, 162, 232, 0.5)'
+        }
         ]
     },
     options: {
